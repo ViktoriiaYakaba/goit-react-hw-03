@@ -1,9 +1,11 @@
-import React from 'react';
 import Contact from './Contact';
-
+const listItemStyles = {
+  display: "flex",
+  gap: 30,
+}
 const ContactList = ({ contacts }) => {
   return (
-    <ul>
+    <ul style={listItemStyles}>
       {contacts.map((contact) => (
         <Contact key={contact.id} contact={contact} />
       ))}
