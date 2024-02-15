@@ -1,21 +1,22 @@
 const inputStyles = {
-  border: "1px solid DeepSkyBlue",
-  borderRadius: 5,
-  width: 275,
-  height: 30,
+  border: "1px solid #ccc",
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  borderRadius: 8,
   paddingLeft: 20,
-  marginLeft: 40,
+  width: 320,
+  height: 40, 
 }
+
 
 const SearchBox = ({ value, onChange }) => {
   return (
-    <input
-        type="text"
-        placeholder="Search contacts..."
-        value={value}
-        onChange={onChange}
-        style={inputStyles}
-      />
+      <input
+          type="text"
+          placeholder="Search contacts..."
+          value={value}
+          onChange={onChange}
+          style={inputStyles}
+        />
   );
 };
 
