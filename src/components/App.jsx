@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ContactList from './ContactList';
 import SearchBox from './SearchBox';
 import ContactForm from './ContactForm';
 import "./App.css";
 
 const App = () => {
-   const [contacts, setContacts] = useState(() => {
-    const storedContacts = localStorage.getItem('contacts');
-    return storedContacts ? JSON.parse(storedContacts) : [];
-  });
+  const [contacts, setContacts] = useState([]);
+  const [filter, setFilter] = useState('');
 
-
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+  };
 
   const addContact = (newContact) => {
     const updatedContacts = [...contacts, { ...newContact, id: generateId() }];
@@ -28,11 +28,12 @@ const App = () => {
     return Math.random().toString(36).substr(2, 9);
   };
 
-  const [filter, setFilter] = useState('');
-
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
+  useEffect(() => {
+    const storedContacts = localStorage.getItem('contacts');
+    if (storedContacts) {
+      setContacts(JSON.parse(storedContacts));
+    }
+  }, []);
 
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
